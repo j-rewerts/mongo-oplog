@@ -16,7 +16,6 @@ export default (ns, oplog, predicate) => {
   const re = regex(ns)
 
   debug('initializing filter with re %s', ns)
-  console.log(`predicate ${predicate}`)
 
   function onop(doc) {
     if (!re.test(doc.ns) || filter.ignore) return
