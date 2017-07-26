@@ -1,10 +1,13 @@
 # mongo-oplog
 
-[![Build Status](https://img.shields.io/travis/cayasso/mongo-oplog/master.svg)](https://travis-ci.org/cayasso/mongo-oplog)
-[![NPM version](https://img.shields.io/npm/v/mongo-oplog.svg)](https://www.npmjs.com/package/mongo-oplog)
+[![NPM version](https://img.shields.io/npm/v/mongo-oplog.svg)](https://www.npmjs.com/package/mongo-oplog-filter)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 Listening to MongoDB live changes using oplog.
+
+## New changes
+
+The only change I've made to the original @cayasso project is the ability to filter document results by predicate.
 
 ## Features
 
@@ -156,6 +159,20 @@ Create and return a filter object.
 
 ```javascript
 const filter = oplog.filter('*.posts')
+filter.on('op', fn)
+oplog.tail()
+```
+
+### oplog.filter(ns, predicate)
+
+Create and return a filter object. Allows additional filtering of results.
+
+```javascript
+// Only updates will be passed through now.
+const filter = oplog.filter('*.posts', function(doc) {
+  if (doc.op === 'u') return true;
+  return false
+})
 filter.on('op', fn)
 oplog.tail()
 ```
