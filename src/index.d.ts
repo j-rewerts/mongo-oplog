@@ -1,5 +1,5 @@
-// Type definitions for [cayasso/mongo-oplog]
-// Project: [https://github.com/cayasso/mongo-oplog]
+// Type definitions for [j-rewerts/mongo-oplog]
+// Project: [https://github.com/j-rewerts/mongo-oplog]
 // Definitions by: [FinalDes] <[https://github.com/FinalDes]>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
