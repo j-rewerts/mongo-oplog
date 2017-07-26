@@ -1,20 +1,21 @@
 {
-  "name": "mongo-oplog",
-  "version": "2.0.2",
+  "name": "mongo-oplog-filter",
+  "version": "1.0.0",
   "description": "Watch mongodb oplog in a simple way",
-  "author": "Jonathan Brumley <cayasso@gmail.com>",
-  "homepage": "https://github.com/cayasso/mongo-oplog",
+  "author": "Jared Rewerts <jaredrewerts@gmail.com>",
+  "homepage": "https://github.com/j-rewerts/mongo-oplog",
   "main": "./index.js",
   "types": "./src/index.d.ts",
   "scripts": {
     "test": "xo && mocha",
-    "build": "npm run clean && ./node_modules/.bin/babel src -d lib",
+    "build": "npm run clean && npm run babelify",
+    "babelify": "node_modules/.bin/babel.cmd src -d lib",
     "prepublish": "npm run build",
-    "clean": "rm -rf lib/"
+    "clean": "rm -rf lib"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cayasso/mongo-oplog.git"
+    "url": "git://github.com/j-rewerts/mongo-oplog.git"
   },
   "keywords": [
     "data",
