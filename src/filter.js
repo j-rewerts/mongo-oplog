@@ -10,7 +10,7 @@ export function regex(pattern) {
   return new RegExp(`^${pattern}$`, 'i')
 }
 
-export default (ns, oplog) => {
+export default (ns, predicate, oplog) => {
   const debug = dbg('mongo-oplog:filter')
   const filter = new Emitter()
   const re = regex(ns)
@@ -19,6 +19,7 @@ export default (ns, oplog) => {
 
   function onop(doc) {
     if (!re.test(doc.ns) || filter.ignore) return
+    if (predicate && !predicate(doc)) return
     debug('incoming data %j', doc)
     filter.emit('op', doc)
     filter.emit(events[doc.op], doc)

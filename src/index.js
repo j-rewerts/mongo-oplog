@@ -68,8 +68,8 @@ export default (uri, options = {}) => {
     }
   }
 
-  function filter(ns) {
-    return createFilter(ns, oplog)
+  function filter(ns, predicate) {
+    return createFilter(ns, predicate, oplog)
   }
 
   async function stop() {
