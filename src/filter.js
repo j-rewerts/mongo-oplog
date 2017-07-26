@@ -10,12 +10,13 @@ export function regex(pattern) {
   return new RegExp(`^${pattern}$`, 'i')
 }
 
-export default (ns, predicate, oplog) => {
+export default (ns, oplog, predicate) => {
   const debug = dbg('mongo-oplog:filter')
   const filter = new Emitter()
   const re = regex(ns)
 
   debug('initializing filter with re %s', ns)
+  console.log(`predicate ${predicate}`)
 
   function onop(doc) {
     if (!re.test(doc.ns) || filter.ignore) return
