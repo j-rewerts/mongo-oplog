@@ -222,6 +222,31 @@ describe('mongo-oplog', function () {
     });
   });
 
+  it('should filter using predicate', function (done) {
+    var new1 = db.collection('new1');
+    var oplog = MongoOplog(conn.oplog);
+
+    var filter = oplog.filter('*.new1', function(doc) {
+      return doc.o.n === 'L1' ? false : true;
+    });
+
+    filter.on('op', function(doc) {
+      doc.o.n.should.be.eql('L2');
+      done();
+    });
+
+    oplog.tail(function (err) {
+      if (err) return done(err);
+      new1.insert({ n: 'L1' }, function (err) {
+        if (err) return done(err);
+
+        new1.insert({ n: 'L2' }, function (err) {
+          if (err) return done(err);
+        });
+      });
+    });
+  });
+
   it('should stop tailing', function (done) {
     var coll = db.collection('h');
     var oplog = MongoOplog(conn.oplog, { ns: '*.h' });
