@@ -30,7 +30,7 @@
   "dependencies": {
     "debug": "2.3.x",
     "eventemitter3": "^2.0.2",
-    "mongodb": "~2.2.x",
+    "mongodb": "~3.1.13",
     "babel-polyfill": "^6.20.0"
   },
   "devDependencies": {
